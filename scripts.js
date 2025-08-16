@@ -1,155 +1,171 @@
-// Utilities
-const $ = (q, ctx = document) => ctx.querySelector(q);
-const $$ = (q, ctx = document) => Array.from(ctx.querySelectorAll(q));
-
-/* Loader */
+// Loading screen hide after page load
 window.addEventListener('load', () => {
-  $('#loader')?.classList.add('hidden');
-});
-
-/* Current year */
-$('#year').textContent = new Date().getFullYear();
-
-/* Mobile Nav */
-const hamburger = $('#hamburger');
-const navMenu = $('#navMenu');
-hamburger?.addEventListener('click', () => {
-  const open = navMenu.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
-});
-$$('.nav-links a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
-
-/* Back to top */
-const backToTop = $('#backToTop');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 500) backToTop.classList.add('show');
-  else backToTop.classList.remove('show');
-});
-backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-/* Theme toggle (persist) */
-const themeToggle = $('#themeToggle');
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
-themeToggle?.addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-theme') || 'light';
-  const next = current === 'light' ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-});
-
-/* Intersection Observer: reveal on scroll */
-const revealEls = [...$$('.reveal-up'), ...$$('.reveal-fade')];
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(ent => {
-    if (ent.isIntersecting) {
-      ent.target.classList.add('revealed');
-      io.unobserve(ent.target);
-    }
-  });
-}, {threshold: 0.15});
-revealEls.forEach(el => io.observe(el));
-
-/* Animated counters */
-const counters = $$('.count');
-let countersAnimated = false;
-const countersIO = new IntersectionObserver((entries) => {
-  entries.forEach(ent => {
-    if (ent.isIntersecting && !countersAnimated) {
-      countersAnimated = true;
-      counters.forEach(counter => animateCount(counter));
-      countersIO.disconnect();
-    }
-  });
-}, {threshold: 0.4});
-if (counters.length) countersIO.observe(counters[0]);
-
-function animateCount(el) {
-  const target = +el.dataset.target || 0;
-  const duration = 1400;
-  const start = performance.now();
-  function step(now) {
-    const p = Math.min((now - start) / duration, 1);
-    el.textContent = Math.floor(p * target).toLocaleString();
-    if (p < 1) requestAnimationFrame(step);
+  const loadingScreen = document.getElementById('loading-screen');
+  if (loadingScreen) {
+    loadingScreen.style.opacity = '0';
+    setTimeout(() => loadingScreen.style.display = 'none', 500);
   }
-  requestAnimationFrame(step);
+});
+
+// Hamburger menu toggle
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+
+// Close mobile menu on link click
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+    }
+  });
+});
+
+// Smooth scroll polyfill (for legacy support, mostly modern browsers support natively)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Animate elements on scroll using Intersection Observer
+const animatedElements = document.querySelectorAll('.animate');
+const observerOptions = {
+  threshold: 0.2,
+};
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+animatedElements.forEach(el => {
+  observer.observe(el);
+});
+
+// Testimonials Carousel Logic
+const carouselWrapper = document.querySelector('.testimonials-wrapper');
+const testimonials = document.querySelectorAll('.testimonial-card');
+const prevBtn = document.querySelector('.carousel-control.prev');
+const nextBtn = document.querySelector('.carousel-control.next');
+let currentIndex = 0;
+let testimonialInterval;
+
+function updateCarousel() {
+  testimonials.forEach((testimonial, i) => {
+    testimonial.classList.toggle('active', i === currentIndex);
+  });
 }
 
-/* Carousel */
-const track = $('.carousel-track');
-const prevBtn = $('.carousel .prev');
-const nextBtn = $('.carousel .next');
-const dotsWrap = $('.carousel-dots');
-
-if (track && prevBtn && nextBtn && dotsWrap) {
-  const slides = $$('.testimonial', track);
-  let index = 0;
-
-  // dots
-  slides.forEach((_, i) => {
-    const b = document.createElement('button');
-    b.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(b);
-  });
-  function updateDots() {
-    $$('.carousel-dots button', dotsWrap).forEach((d, i) => d.classList.toggle('active', i === index));
-  }
-  function goTo(i) {
-    index = (i + slides.length) % slides.length;
-    const offset = slides.slice(0, index).reduce((acc, s) => acc + s.getBoundingClientRect().width + 16, 0);
-    track.scrollTo({ left: offset, behavior: 'smooth' });
-    updateDots();
-  }
-  prevBtn.addEventListener('click', () => goTo(index - 1));
-  nextBtn.addEventListener('click', () => goTo(index + 1));
-  updateDots();
-
-  // Auto-play
-  let auto = setInterval(() => goTo(index + 1), 5000);
-  track.addEventListener('pointerenter', () => clearInterval(auto));
-  track.addEventListener('pointerleave', () => auto = setInterval(() => goTo(index + 1), 5000));
+function showNextTestimonial() {
+  currentIndex = (currentIndex + 1) % testimonials.length;
+  updateCarousel();
 }
 
-/* FAQ details animation (native <details> is good; just add smoothness) */
-$$('details').forEach(d => {
-  d.addEventListener('toggle', () => {
-    if (d.open) {
-      const c = d.querySelector('p');
-      if (c) {
-        c.style.opacity = 0;
-        requestAnimationFrame(() => {
-          c.animate([{opacity:0},{opacity:1}], {duration:200, fill:'forwards'});
-        });
-      }
-    }
-  });
+function showPrevTestimonial() {
+  currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+  updateCarousel();
+}
+
+prevBtn.addEventListener('click', () => {
+  showPrevTestimonial();
+  resetInterval();
+});
+nextBtn.addEventListener('click', () => {
+  showNextTestimonial();
+  resetInterval();
 });
 
-/* Contact form validation (client-side only) */
-$('#contactForm')?.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const form = e.currentTarget;
-  let valid = true;
-  $$('input[required], textarea[required]', form).forEach(field => {
-    const error = field.parentElement.querySelector('.error');
-    if (!field.value.trim() || (field.type === 'email' && !/^\S+@\S+\.\S+$/.test(field.value))) {
-      error.textContent = field.type === 'email' ? 'Enter a valid email.' : 'This field is required.';
-      valid = false;
+function resetInterval() {
+  clearInterval(testimonialInterval);
+  testimonialInterval = setInterval(showNextTestimonial, 6000);
+}
+
+testimonialInterval = setInterval(showNextTestimonial, 6000);
+updateCarousel();
+
+// FAQ Accordion
+const faqButtons = document.querySelectorAll('.faq-question');
+
+faqButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const expanded = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!expanded));
+    const answer = button.nextElementSibling;
+    if (!expanded) {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
     } else {
-      error.textContent = '';
+      answer.style.maxHeight = null;
     }
   });
 
-  const status = $('#formStatus');
-  if (!valid) {
-    status.textContent = 'Please fix the errors above.';
-    return;
+  // Accessibility: toggle answer height on page load if aria-expanded true
+  if(button.getAttribute('aria-expanded') === 'true'){
+    const answer = button.nextElementSibling;
+    answer.style.maxHeight = answer.scrollHeight + 'px';
   }
-  // Simulate success (replace with your backend later)
-  status.textContent = 'Sending…';
-  setTimeout(() => {
-    status.textContent = 'Thanks! We’ll reach out within 24 hours.';
-    e.target.reset();
-  }, 700);
+});
+
+// Contact form validation and submission
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = contactForm.name.value.trim();
+    const email = contactForm.email.value.trim();
+    const message = contactForm.message.value.trim();
+
+    if (!name || !email || !message) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    alert('Thank you for contacting FitVibe! We will get back to you soon.');
+
+    contactForm.reset();
+  });
+}
+
+// Dark/Light mode toggle
+const toggleThemeBtn = document.getElementById('toggle-theme');
+const bodyElement = document.body;
+
+function setTheme(theme) {
+  if (theme === 'dark') {
+    bodyElement.classList.add('dark-mode');
+    toggleThemeBtn.textContent = '☀️';
+  } else {
+    bodyElement.classList.remove('dark-mode');
+    toggleThemeBtn.textContent = '🌙';
+  }
+  localStorage.setItem('fitvibe-theme', theme);
+}
+
+toggleThemeBtn.addEventListener('click', () => {
+  const isDark = bodyElement.classList.contains('dark-mode');
+  setTheme(isDark ? 'light' : 'dark');
+});
+
+// Load saved theme
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('fitvibe-theme') || 'light';
+  setTheme(savedTheme);
 });
