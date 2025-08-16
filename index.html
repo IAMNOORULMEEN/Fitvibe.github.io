@@ -1,140 +1,302 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FitVibe - Modern Fitness</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FitVibe – Modern Fitness</title>
+  <meta name="description" content="FitVibe offers personal training, group classes, and nutrition plans to elevate your fitness experience." />
+  <meta name="theme-color" content="#10b981" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <!-- Icons -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💪</text></svg>">
 </head>
 <body>
-  <!-- ===== HEADER ===== -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">FitVibe</div>
-      <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
+  <!-- Loading Screen -->
+  <div id="loader" aria-hidden="true">
+    <div class="spinner"></div>
+    <p>Loading FitVibe…</p>
+  </div>
+
+  <!-- Back to top -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+
+  <!-- Header / Nav -->
+  <header class="site-header" id="home">
+    <nav class="nav container">
+      <a href="#home" class="logo" aria-label="FitVibe Home">Fit<span>Vibe</span></a>
+
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle light/dark">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path d="M21.64 13a9 9 0 11-10.63-10.6 1 1 0 01.9 1.7A7 7 0 1019.9 12.1a1 1 0 011.74.9z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
         <li><a href="#services">Services</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" class="btn btn-sm">Get Started</a></li>
       </ul>
-      <div class="menu-toggle">☰</div>
     </nav>
+
+    <section class="hero container">
+      <div class="hero-content">
+        <h1 class="reveal-up">Elevate Your <span class="grad">Fitness</span> Experience</h1>
+        <p class="muted reveal-up delay-1">
+          Personalized coaching, energizing group classes, and smart nutrition—built for your goals.
+        </p>
+        <div class="cta reveal-up delay-2">
+          <a href="#pricing" class="btn btn-lg">Join Now</a>
+          <a href="#services" class="btn btn-lg btn-ghost">Explore Services</a>
+        </div>
+
+        <div class="stats reveal-up delay-3" aria-label="FitVibe stats">
+          <div><span class="count" data-target="1200">0</span><small>Happy Clients</small></div>
+          <div><span class="count" data-target="35">0</span><small>Weekly Classes</small></div>
+          <div><span class="count" data-target="15">0</span><small>Expert Coaches</small></div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal-fade delay-2" role="img" aria-label="People training">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1600&auto=format&fit=crop" alt="Athletes training in a gym">
+        <div class="floating-card">
+          <strong>Personal Plan</strong>
+          <span>Custom workouts + nutrition</span>
+        </div>
+      </div>
+    </section>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <section id="hero" class="hero">
-    <h1>Elevate Your Fitness Experience</h1>
-    <p>Your health, your vibe, your journey.</p>
-    <div class="hero-buttons">
-      <a href="#services" class="btn primary">Get Started</a>
-      <a href="#contact" class="btn secondary">Join Now</a>
-    </div>
-  </section>
+  <!-- Services -->
+  <section id="services" class="section container">
+    <header class="section-head reveal-up">
+      <h2>Services</h2>
+      <p class="muted">Choose your path—solo focus, team energy, or fuel-smart eating.</p>
+    </header>
 
-  <!-- ===== SERVICES ===== -->
-  <section id="services" class="services">
-    <h2>Our Services</h2>
-    <div class="service-cards">
-      <div class="card">
-        <img src="assets/service1.jpg" alt="Personal Training">
+    <div class="grid-3">
+      <article class="card lift reveal-up">
+        <div class="icon">🏋️</div>
         <h3>Personal Training</h3>
-        <p>One-on-one customized workouts with certified trainers.</p>
-      </div>
-      <div class="card">
-        <img src="assets/service2.jpg" alt="Group Classes">
+        <p>1:1 coaching tailored to your goals with progressive programming.</p>
+        <ul class="mini">
+          <li>Form correction & injury-safe progressions</li>
+          <li>Weekly check-ins and habit tracking</li>
+        </ul>
+        <a href="#pricing" class="link">See plans →</a>
+      </article>
+
+      <article class="card lift reveal-up delay-1">
+        <div class="icon">🔥</div>
         <h3>Group Classes</h3>
-        <p>Fun, energetic group workouts from yoga to HIIT.</p>
-      </div>
-      <div class="card">
-        <img src="assets/service3.jpg" alt="Nutrition Plans">
+        <p>High-energy classes from HIIT to Yoga—motivating, scalable, fun.</p>
+        <ul class="mini">
+          <li>Beginner to advanced levels</li>
+          <li>Flexible morning/evening slots</li>
+        </ul>
+        <a href="#pricing" class="link">Schedule →</a>
+      </article>
+
+      <article class="card lift reveal-up delay-2">
+        <div class="icon">🥗</div>
         <h3>Nutrition Plans</h3>
-        <p>Personalized meal plans designed for your fitness goals.</p>
+        <p>Simple, sustainable nutrition plans that match your training.</p>
+        <ul class="mini">
+          <li>Macro targets & recipe ideas</li>
+          <li>Monthly reviews & adjustments</li>
+        </ul>
+        <a href="#pricing" class="link">Start eating smart →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section section-alt">
+    <div class="container about">
+      <div class="about-media reveal-fade">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1600&auto=format&fit=crop" alt="Coach guiding a workout">
+      </div>
+      <div class="about-copy">
+        <h2 class="reveal-up">About FitVibe</h2>
+        <p class="muted reveal-up delay-1">
+          Our mission is to turn consistent effort into life-changing results. We mix science-backed training, supportive community, and practical nutrition to keep you progressing.
+        </p>
+        <ul class="ticks reveal-up delay-2">
+          <li>Certified coaches with 5–10+ years experience</li>
+          <li>Holistic approach: strength, mobility, mindset</li>
+          <li>Programs for fat loss, muscle gain, and performance</li>
+        </ul>
+        <a href="#contact" class="btn reveal-up delay-3">Book a Free Consult</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
-  <section id="about" class="about">
-    <h2>About Us</h2>
-    <p>FitVibe is dedicated to transforming lives through fitness and nutrition. 
-       Our mission is to help you achieve your best version with guidance from expert trainers.</p>
-    <img src="assets/about.jpg" alt="About Us">
+  <!-- Testimonials -->
+  <section class="section container" aria-label="Testimonials">
+    <header class="section-head reveal-up">
+      <h2>Results & Stories</h2>
+      <p class="muted">Real people, real progress.</p>
+    </header>
+
+    <div class="carousel reveal-up" id="carousel" aria-roledescription="carousel" aria-label="Client testimonials">
+      <button class="carousel-btn prev" aria-label="Previous">‹</button>
+      <div class="carousel-track">
+        <figure class="testimonial">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" alt="Client smiling">
+          <blockquote>“FitVibe changed my routine into results. Down 9kg in 12 weeks!”</blockquote>
+          <figcaption>— Rahul, 28</figcaption>
+        </figure>
+        <figure class="testimonial">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop" alt="Client portrait">
+          <blockquote>“The coaches keep me accountable without burning me out.”</blockquote>
+          <figcaption>— Aisha, 24</figcaption>
+        </figure>
+        <figure class="testimonial">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=800&auto=format&fit=crop" alt="Client portrait">
+          <blockquote>“Group classes are electric. Stronger, faster, happier.”</blockquote>
+          <figcaption>— Vikram, 31</figcaption>
+        </figure>
+      </div>
+      <button class="carousel-btn next" aria-label="Next">›</button>
+      <div class="carousel-dots" aria-hidden="true"></div>
+    </div>
   </section>
 
-  <!-- ===== PRICING ===== -->
-  <section id="pricing" class="pricing">
-    <h2>Pricing Plans</h2>
-    <div class="pricing-cards">
-      <div class="price-card">
-        <h3>Basic</h3>
-        <p>$29 / month</p>
-        <ul>
-          <li>Access to gym</li>
-          <li>Group classes</li>
-        </ul>
-        <a href="#" class="btn primary">Choose Plan</a>
-      </div>
-      <div class="price-card">
-        <h3>Standard</h3>
-        <p>$49 / month</p>
-        <ul>
-          <li>Everything in Basic</li>
-          <li>Personal Training (2 sessions)</li>
-        </ul>
-        <a href="#" class="btn primary">Choose Plan</a>
-      </div>
-      <div class="price-card">
-        <h3>Premium</h3>
-        <p>$79 / month</p>
-        <ul>
-          <li>Everything in Standard</li>
-          <li>Unlimited Personal Training</li>
-        </ul>
-        <a href="#" class="btn primary">Choose Plan</a>
+  <!-- Pricing -->
+  <section id="pricing" class="section section-alt">
+    <div class="container">
+      <header class="section-head reveal-up">
+        <h2>Simple Pricing</h2>
+        <p class="muted">Start where you are—scale as you grow.</p>
+      </header>
+
+      <div class="grid-3">
+        <article class="price-card reveal-up">
+          <h3>Basic</h3>
+          <p class="price"><span>₹</span>499<span class="per">/mo</span></p>
+          <ul>
+            <li>2 classes / week</li>
+            <li>Starter plan template</li>
+            <li>Email support</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost">Get Basic</a>
+        </article>
+
+        <article class="price-card featured reveal-up delay-1" aria-label="Recommended">
+          <div class="badge">Popular</div>
+          <h3>Standard</h3>
+          <p class="price"><span>₹</span>999<span class="per">/mo</span></p>
+          <ul>
+            <li>Unlimited classes</li>
+            <li>Coach check-in monthly</li>
+            <li>Habit tracker access</li>
+          </ul>
+          <a href="#contact" class="btn">Choose Standard</a>
+        </article>
+
+        <article class="price-card reveal-up delay-2">
+          <h3>Premium</h3>
+          <p class="price"><span>₹</span>1499<span class="per">/mo</span></p>
+          <ul>
+            <li>1:1 weekly coaching</li>
+            <li>Custom nutrition</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost">Go Premium</a>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ===== TESTIMONIALS ===== -->
-  <section id="testimonials" class="testimonials">
-    <h2>What Our Clients Say</h2>
-    <div class="testimonial-slider">
-      <div class="testimonial">
-        <img src="assets/testimonial1.jpg" alt="Client 1">
-        <p>"FitVibe completely transformed my lifestyle. The trainers are amazing!"</p>
-        <h4>— John Doe</h4>
-      </div>
-      <div class="testimonial">
-        <img src="assets/testimonial2.jpg" alt="Client 2">
-        <p>"The group classes are fun and motivating. Highly recommended!"</p>
-        <h4>— Sarah Lee</h4>
-      </div>
-      <div class="testimonial">
-        <img src="assets/testimonial3.jpg" alt="Client 3">
-        <p>"The nutrition plan was tailored for me, and I feel healthier than ever."</p>
-        <h4>— Ahmed Khan</h4>
-      </div>
+  <!-- FAQ -->
+  <section id="faq" class="section container">
+    <header class="section-head reveal-up">
+      <h2>FAQ</h2>
+      <p class="muted">Quick answers to common questions.</p>
+    </header>
+
+    <div class="accordion reveal-up">
+      <details>
+        <summary>Do I need equipment to start?</summary>
+        <p>Nope. We scale movements to your level and equipment access.</p>
+      </details>
+      <details>
+        <summary>Are classes beginner friendly?</summary>
+        <p>Yes—each class offers regressions and progressions.</p>
+      </details>
+      <details>
+        <summary>Online or offline?</summary>
+        <p>Both. Choose live studio classes or remote coaching via app.</p>
+      </details>
+      <details>
+        <summary>Can I pause my plan?</summary>
+        <p>Absolutely. Pauses are available for travel or recovery.</p>
+      </details>
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit" class="btn primary">Send Message</button>
-    </form>
+  <!-- Contact -->
+  <section id="contact" class="section section-alt">
+    <div class="container contact">
+      <header class="section-head reveal-up">
+        <h2>Contact Us</h2>
+        <p class="muted">Tell us your goals—let’s build your plan.</p>
+      </header>
+
+      <form class="contact-form reveal-up" id="contactForm" novalidate>
+        <div class="grid-2">
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" required placeholder="Your full name" />
+            <small class="error"></small>
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required placeholder="you@example.com" />
+            <small class="error"></small>
+          </label>
+        </div>
+        <label>
+          <span>Message</span>
+          <textarea name="message" rows="5" required placeholder="What are your goals?"></textarea>
+          <small class="error"></small>
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-lg">Send Message</button>
+          <p id="formStatus" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <aside class="contact-info reveal-up delay-1">
+        <div class="socials">
+          <a href="#" aria-label="Instagram" class="icon-btn">📸</a>
+          <a href="#" aria-label="YouTube" class="icon-btn">▶️</a>
+          <a href="#" aria-label="WhatsApp" class="icon-btn">💬</a>
+        </div>
+        <div class="map">
+          <!-- Optional: replace src with your Google Map embed -->
+          <iframe title="FitVibe Location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=India&output=embed"></iframe>
+        </div>
+      </aside>
+    </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <p>© 2025 FitVibe. All rights reserved.</p>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> FitVibe. All rights reserved.</p>
+      <a href="#home" class="link">Back to top ↑</a>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
