@@ -1,302 +1,239 @@
-<!doctype html>
-<html lang="en" data-theme="light">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitVibe – Modern Fitness</title>
-  <meta name="description" content="FitVibe offers personal training, group classes, and nutrition plans to elevate your fitness experience." />
-  <meta name="theme-color" content="#10b981" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <meta name="description" content="FitVibe - Elevate Your Fitness Experience with personalized training, classes, and nutrition plans." />
+  <title>FitVibe - Elevate Your Fitness Experience</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Icons -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💪</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
   <!-- Loading Screen -->
-  <div id="loader" aria-hidden="true">
-    <div class="spinner"></div>
-    <p>Loading FitVibe…</p>
+  <div id="loading-screen">
+    <div class="loader"></div>
   </div>
 
-  <!-- Back to top -->
-  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
-
-  <!-- Header / Nav -->
-  <header class="site-header" id="home">
-    <nav class="nav container">
-      <a href="#home" class="logo" aria-label="FitVibe Home">Fit<span>Vibe</span></a>
-
-      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle light/dark">
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-          <path d="M21.64 13a9 9 0 11-10.63-10.6 1 1 0 01.9 1.7A7 7 0 1019.9 12.1a1 1 0 011.74.9z" fill="currentColor"/>
-        </svg>
-      </button>
-
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+  <header>
+    <nav class="navbar sticky">
+      <div class="logo">FitVibe</div>
+      <div class="hamburger" id="hamburger">
         <span></span><span></span><span></span>
-      </button>
-
-      <ul class="nav-links" id="navMenu">
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero">Home</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact" class="btn btn-sm">Get Started</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+  </header>
 
-    <section class="hero container">
-      <div class="hero-content">
-        <h1 class="reveal-up">Elevate Your <span class="grad">Fitness</span> Experience</h1>
-        <p class="muted reveal-up delay-1">
-          Personalized coaching, energizing group classes, and smart nutrition—built for your goals.
-        </p>
-        <div class="cta reveal-up delay-2">
-          <a href="#pricing" class="btn btn-lg">Join Now</a>
-          <a href="#services" class="btn btn-lg btn-ghost">Explore Services</a>
-        </div>
-
-        <div class="stats reveal-up delay-3" aria-label="FitVibe stats">
-          <div><span class="count" data-target="1200">0</span><small>Happy Clients</small></div>
-          <div><span class="count" data-target="35">0</span><small>Weekly Classes</small></div>
-          <div><span class="count" data-target="15">0</span><small>Expert Coaches</small></div>
-        </div>
-      </div>
-
-      <div class="hero-visual reveal-fade delay-2" role="img" aria-label="People training">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1600&auto=format&fit=crop" alt="Athletes training in a gym">
-        <div class="floating-card">
-          <strong>Personal Plan</strong>
-          <span>Custom workouts + nutrition</span>
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg"></div>
+      <div class="hero-content container">
+        <h1>Elevate Your Fitness Experience</h1>
+        <p>Your journey to a stronger, healthier you starts here.</p>
+        <div class="hero-buttons">
+          <a href="#pricing" class="btn btn-primary glow-btn">Get Started</a>
+          <a href="#contact" class="btn btn-secondary glow-btn">Join Now</a>
         </div>
       </div>
     </section>
-  </header>
 
-  <!-- Services -->
-  <section id="services" class="section container">
-    <header class="section-head reveal-up">
-      <h2>Services</h2>
-      <p class="muted">Choose your path—solo focus, team energy, or fuel-smart eating.</p>
-    </header>
-
-    <div class="grid-3">
-      <article class="card lift reveal-up">
-        <div class="icon">🏋️</div>
-        <h3>Personal Training</h3>
-        <p>1:1 coaching tailored to your goals with progressive programming.</p>
-        <ul class="mini">
-          <li>Form correction & injury-safe progressions</li>
-          <li>Weekly check-ins and habit tracking</li>
-        </ul>
-        <a href="#pricing" class="link">See plans →</a>
-      </article>
-
-      <article class="card lift reveal-up delay-1">
-        <div class="icon">🔥</div>
-        <h3>Group Classes</h3>
-        <p>High-energy classes from HIIT to Yoga—motivating, scalable, fun.</p>
-        <ul class="mini">
-          <li>Beginner to advanced levels</li>
-          <li>Flexible morning/evening slots</li>
-        </ul>
-        <a href="#pricing" class="link">Schedule →</a>
-      </article>
-
-      <article class="card lift reveal-up delay-2">
-        <div class="icon">🥗</div>
-        <h3>Nutrition Plans</h3>
-        <p>Simple, sustainable nutrition plans that match your training.</p>
-        <ul class="mini">
-          <li>Macro targets & recipe ideas</li>
-          <li>Monthly reviews & adjustments</li>
-        </ul>
-        <a href="#pricing" class="link">Start eating smart →</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section section-alt">
-    <div class="container about">
-      <div class="about-media reveal-fade">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1600&auto=format&fit=crop" alt="Coach guiding a workout">
+    <!-- Services Section -->
+    <section id="services" class="section services-section">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-cards container">
+        <article class="service-card animate fade-in-left" tabindex="0">
+          <div class="icon personal-training"></div>
+          <h3>Personal Training</h3>
+          <p>One-on-one coaching to maximize your potential.</p>
+        </article>
+        <article class="service-card animate fade-in-up" tabindex="0">
+          <div class="icon group-classes"></div>
+          <h3>Group Classes</h3>
+          <p>High-energy workouts with community support.</p>
+        </article>
+        <article class="service-card animate fade-in-right" tabindex="0">
+          <div class="icon nutrition-plans"></div>
+          <h3>Nutrition Plans</h3>
+          <p>Custom meal plans to fuel your fitness goals.</p>
+        </article>
       </div>
-      <div class="about-copy">
-        <h2 class="reveal-up">About FitVibe</h2>
-        <p class="muted reveal-up delay-1">
-          Our mission is to turn consistent effort into life-changing results. We mix science-backed training, supportive community, and practical nutrition to keep you progressing.
-        </p>
-        <ul class="ticks reveal-up delay-2">
-          <li>Certified coaches with 5–10+ years experience</li>
-          <li>Holistic approach: strength, mobility, mindset</li>
-          <li>Programs for fat loss, muscle gain, and performance</li>
-        </ul>
-        <a href="#contact" class="btn reveal-up delay-3">Book a Free Consult</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+      <div class="container grid-two-columns">
+        <div class="about-text animate fade-in-left">
+          <h2>About FitVibe</h2>
+          <p>
+            At FitVibe, our mission is to empower you to reach your peak fitness with innovative programs and expert support. Your success is our passion.
+          </p>
+        </div>
+        <div class="about-image animate fade-in-right">
+          <img src="https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=600&q=80" alt="Fitness Trainer" loading="lazy" />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Testimonials -->
-  <section class="section container" aria-label="Testimonials">
-    <header class="section-head reveal-up">
-      <h2>Results & Stories</h2>
-      <p class="muted">Real people, real progress.</p>
-    </header>
-
-    <div class="carousel reveal-up" id="carousel" aria-roledescription="carousel" aria-label="Client testimonials">
-      <button class="carousel-btn prev" aria-label="Previous">‹</button>
-      <div class="carousel-track">
-        <figure class="testimonial">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" alt="Client smiling">
-          <blockquote>“FitVibe changed my routine into results. Down 9kg in 12 weeks!”</blockquote>
-          <figcaption>— Rahul, 28</figcaption>
-        </figure>
-        <figure class="testimonial">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop" alt="Client portrait">
-          <blockquote>“The coaches keep me accountable without burning me out.”</blockquote>
-          <figcaption>— Aisha, 24</figcaption>
-        </figure>
-        <figure class="testimonial">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=800&auto=format&fit=crop" alt="Client portrait">
-          <blockquote>“Group classes are electric. Stronger, faster, happier.”</blockquote>
-          <figcaption>— Vikram, 31</figcaption>
-        </figure>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials-section">
+      <h2 class="section-title">What Our Clients Say</h2>
+      <div class="testimonial-carousel container">
+        <button class="carousel-control prev" aria-label="Previous testimonial">&#10094;</button>
+        <div class="testimonials-wrapper">
+          <article class="testimonial-card active" aria-live="polite">
+            <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Client Sarah" />
+            <p>"FitVibe changed my life! The personal training program is incredible."</p>
+            <div class="stars" aria-label="5 stars">★★★★★</div>
+            <h4>Sarah B.</h4>
+          </article>
+          <article class="testimonial-card" aria-live="polite">
+            <img src="https://randomuser.me/api/portraits/men/47.jpg" alt="Client Jason" />
+            <p>"The group classes keep me motivated every week. Amazing community."</p>
+            <div class="stars" aria-label="4 stars">★★★★☆</div>
+            <h4>Jason M.</h4>
+          </article>
+          <article class="testimonial-card" aria-live="polite">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client Michelle" />
+            <p>"Nutrition plans tailored to me made all the difference in my progress."</p>
+            <div class="stars" aria-label="5 stars">★★★★★</div>
+            <h4>Michelle K.</h4>
+          </article>
+        </div>
+        <button class="carousel-control next" aria-label="Next testimonial">&#10095;</button>
       </div>
-      <button class="carousel-btn next" aria-label="Next">›</button>
-      <div class="carousel-dots" aria-hidden="true"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Pricing -->
-  <section id="pricing" class="section section-alt">
-    <div class="container">
-      <header class="section-head reveal-up">
-        <h2>Simple Pricing</h2>
-        <p class="muted">Start where you are—scale as you grow.</p>
-      </header>
-
-      <div class="grid-3">
-        <article class="price-card reveal-up">
+    <!-- Pricing Section -->
+    <section id="pricing" class="section pricing-section">
+      <h2 class="section-title">Membership Pricing</h2>
+      <div class="pricing-cards container">
+        <article class="pricing-card animate fade-in-up" tabindex="0">
           <h3>Basic</h3>
-          <p class="price"><span>₹</span>499<span class="per">/mo</span></p>
+          <p class="price">$19 <span>/month</span></p>
           <ul>
-            <li>2 classes / week</li>
-            <li>Starter plan template</li>
-            <li>Email support</li>
+            <li>Access to all workouts</li>
+            <li>Community forum</li>
           </ul>
-          <a href="#contact" class="btn btn-ghost">Get Basic</a>
+          <a href="#contact" class="btn btn-primary btn-cta">Choose Basic</a>
         </article>
-
-        <article class="price-card featured reveal-up delay-1" aria-label="Recommended">
-          <div class="badge">Popular</div>
+        <article class="pricing-card animate fade-in-up popular" tabindex="0">
           <h3>Standard</h3>
-          <p class="price"><span>₹</span>999<span class="per">/mo</span></p>
+          <p class="price">$39 <span>/month</span></p>
           <ul>
-            <li>Unlimited classes</li>
-            <li>Coach check-in monthly</li>
-            <li>Habit tracker access</li>
+            <li>Personalized plans</li>
+            <li>Trainer chat & support</li>
+            <li>Weekly progress tracking</li>
           </ul>
-          <a href="#contact" class="btn">Choose Standard</a>
+          <a href="#contact" class="btn btn-primary btn-cta">Choose Standard</a>
         </article>
-
-        <article class="price-card reveal-up delay-2">
+        <article class="pricing-card animate fade-in-up" tabindex="0">
           <h3>Premium</h3>
-          <p class="price"><span>₹</span>1499<span class="per">/mo</span></p>
+          <p class="price">$59 <span>/month</span></p>
           <ul>
-            <li>1:1 weekly coaching</li>
-            <li>Custom nutrition</li>
-            <li>Priority support</li>
+            <li>1:1 Private training</li>
+            <li>Diet planning</li>
+            <li>Exclusive events</li>
           </ul>
-          <a href="#contact" class="btn btn-ghost">Go Premium</a>
+          <a href="#contact" class="btn btn-primary btn-cta">Choose Premium</a>
         </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="section container">
-    <header class="section-head reveal-up">
-      <h2>FAQ</h2>
-      <p class="muted">Quick answers to common questions.</p>
-    </header>
-
-    <div class="accordion reveal-up">
-      <details>
-        <summary>Do I need equipment to start?</summary>
-        <p>Nope. We scale movements to your level and equipment access.</p>
-      </details>
-      <details>
-        <summary>Are classes beginner friendly?</summary>
-        <p>Yes—each class offers regressions and progressions.</p>
-      </details>
-      <details>
-        <summary>Online or offline?</summary>
-        <p>Both. Choose live studio classes or remote coaching via app.</p>
-      </details>
-      <details>
-        <summary>Can I pause my plan?</summary>
-        <p>Absolutely. Pauses are available for travel or recovery.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section section-alt">
-    <div class="container contact">
-      <header class="section-head reveal-up">
-        <h2>Contact Us</h2>
-        <p class="muted">Tell us your goals—let’s build your plan.</p>
-      </header>
-
-      <form class="contact-form reveal-up" id="contactForm" novalidate>
-        <div class="grid-2">
-          <label>
-            <span>Name</span>
-            <input type="text" name="name" required placeholder="Your full name" />
-            <small class="error"></small>
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" name="email" required placeholder="you@example.com" />
-            <small class="error"></small>
-          </label>
+    <!-- FAQ Section -->
+    <section id="faq" class="section faq-section">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-container container">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq1" id="faq1-btn">
+            What is included in the personal training?
+            <span class="arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-btn">
+            Personalized coaching, workout programming, and progress tracking.
+          </div>
         </div>
-        <label>
-          <span>Message</span>
-          <textarea name="message" rows="5" required placeholder="What are your goals?"></textarea>
-          <small class="error"></small>
-        </label>
-        <div class="form-actions">
-          <button type="submit" class="btn btn-lg">Send Message</button>
-          <p id="formStatus" role="status" aria-live="polite"></p>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq2" id="faq2-btn">
+            Can I join group classes as a beginner?
+            <span class="arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-btn">
+            Absolutely! Group classes cater to all levels with scalable intensity.
+          </div>
         </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq3" id="faq3-btn">
+            How do I get a custom nutrition plan?
+            <span class="arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-btn">
+            Nutritionists work with you to build a personalized plan after an initial assessment.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <h2 class="section-title">Contact Us</h2>
+      <form class="contact-form container" novalidate>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+        <button type="submit" class="btn btn-primary btn-submit glow-btn">Send Message</button>
       </form>
+      <div class="social-icons container" aria-label="social media">
+        <a href="#" aria-label="Facebook" class="social-icon fb-icon"></a>
+        <a href="#" aria-label="Twitter" class="social-icon tw-icon"></a>
+        <a href="#" aria-label="Instagram" class="social-icon ig-icon"></a>
+        <a href="#" aria-label="LinkedIn" class="social-icon li-icon"></a>
+      </div>
+      <div class="map-container container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0125051859637!2d-122.41941508468114!3d37.77492987975953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c8e5f672b%3A0x4078c9180ba5b51a!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1625044371227!5m2!1sen!2sus"
+          width="100%"
+          height="250"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Google Map"
+        ></iframe>
+      </div>
+    </section>
+  </main>
 
-      <aside class="contact-info reveal-up delay-1">
-        <div class="socials">
-          <a href="#" aria-label="Instagram" class="icon-btn">📸</a>
-          <a href="#" aria-label="YouTube" class="icon-btn">▶️</a>
-          <a href="#" aria-label="WhatsApp" class="icon-btn">💬</a>
-        </div>
-        <div class="map">
-          <!-- Optional: replace src with your Google Map embed -->
-          <iframe title="FitVibe Location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=India&output=embed"></iframe>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> FitVibe. All rights reserved.</p>
-      <a href="#home" class="link">Back to top ↑</a>
+  <footer>
+    <div class="footer-content container">
+      <nav aria-label="footer navigation" class="footer-nav">
+        <a href="#hero">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p>© 2025 FitVibe. All rights reserved.</p>
+      <button id="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Dark/Light Mode">🌙</button>
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
