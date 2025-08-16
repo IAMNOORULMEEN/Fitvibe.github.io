@@ -3,237 +3,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="FitVibe - Elevate Your Fitness Experience with personalized training, classes, and nutrition plans." />
-  <title>FitVibe - Elevate Your Fitness Experience</title>
+  <meta name="description" content="Your modern product landing site" />
+  <title>Modern Product Landing</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Loading Screen -->
-  <div id="loading-screen">
-    <div class="loader"></div>
-  </div>
-
-  <header>
-    <nav class="navbar sticky">
-      <div class="logo">FitVibe</div>
-      <div class="hamburger" id="hamburger">
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">BrandName</div>
+      <ul class="nav-menu">
+        <li><a href="#card1">Home</a></li>
+        <li><a href="#card2">Products</a></li>
+        <li><a href="#card3">Offers</a></li>
+        <li><a href="#card4">About</a></li>
+        <li><a href="#footer">Contact</a></li>
+      </ul>
+      <div class="hamburger">
         <span></span><span></span><span></span>
       </div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
+  <!-- Main Promotional Cards -->
   <main>
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-      <div class="hero-bg"></div>
-      <div class="hero-content container">
-        <h1>Elevate Your Fitness Experience</h1>
-        <p>Your journey to a stronger, healthier you starts here.</p>
-        <div class="hero-buttons">
-          <a href="#pricing" class="btn btn-primary glow-btn">Get Started</a>
-          <a href="#contact" class="btn btn-secondary glow-btn">Join Now</a>
+    <section class="card promo-card light-bg" id="card1">
+      <div class="card-content">
+        <h1>Your Product</h1>
+        <p>Meet our latest innovation.</p>
+        <div class="cta-wrap">
+          <a href="#" class="cta blue">Learn more</a>
+          <a href="#" class="cta grey">Shop Now</a>
+        </div>
+        <div class="card-image">
+          <img src="https://dummyimage.com/400x250/c9d6e7/2d4059&text=Product" alt="Main Product" />
         </div>
       </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section services-section">
-      <h2 class="section-title">Our Services</h2>
-      <div class="services-cards container">
-        <article class="service-card animate fade-in-left" tabindex="0">
-          <div class="icon personal-training"></div>
-          <h3>Personal Training</h3>
-          <p>One-on-one coaching to maximize your potential.</p>
-        </article>
-        <article class="service-card animate fade-in-up" tabindex="0">
-          <div class="icon group-classes"></div>
-          <h3>Group Classes</h3>
-          <p>High-energy workouts with community support.</p>
-        </article>
-        <article class="service-card animate fade-in-right" tabindex="0">
-          <div class="icon nutrition-plans"></div>
-          <h3>Nutrition Plans</h3>
-          <p>Custom meal plans to fuel your fitness goals.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section about-section">
-      <div class="container grid-two-columns">
-        <div class="about-text animate fade-in-left">
-          <h2>About FitVibe</h2>
-          <p>
-            At FitVibe, our mission is to empower you to reach your peak fitness with innovative programs and expert support. Your success is our passion.
-          </p>
+    <section class="card promo-card blue-bg" id="card2">
+      <div class="card-content">
+        <h1>UltraBook X1</h1>
+        <p>Thin. Light. Powerful.</p>
+        <div class="cta-wrap">
+          <a href="#" class="cta blue">Learn more</a>
+          <a href="#" class="cta grey">Buy</a>
         </div>
-        <div class="about-image animate fade-in-right">
-          <img src="https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=600&q=80" alt="Fitness Trainer" loading="lazy" />
+        <div class="card-image">
+          <img src="https://dummyimage.com/350x200/29a8df/fff&text=Laptop" alt="Laptop Product" />
         </div>
       </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="section testimonials-section">
-      <h2 class="section-title">What Our Clients Say</h2>
-      <div class="testimonial-carousel container">
-        <button class="carousel-control prev" aria-label="Previous testimonial">&#10094;</button>
-        <div class="testimonials-wrapper">
-          <article class="testimonial-card active" aria-live="polite">
-            <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Client Sarah" />
-            <p>"FitVibe changed my life! The personal training program is incredible."</p>
-            <div class="stars" aria-label="5 stars">★★★★★</div>
-            <h4>Sarah B.</h4>
-          </article>
-          <article class="testimonial-card" aria-live="polite">
-            <img src="https://randomuser.me/api/portraits/men/47.jpg" alt="Client Jason" />
-            <p>"The group classes keep me motivated every week. Amazing community."</p>
-            <div class="stars" aria-label="4 stars">★★★★☆</div>
-            <h4>Jason M.</h4>
-          </article>
-          <article class="testimonial-card" aria-live="polite">
-            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client Michelle" />
-            <p>"Nutrition plans tailored to me made all the difference in my progress."</p>
-            <div class="stars" aria-label="5 stars">★★★★★</div>
-            <h4>Michelle K.</h4>
-          </article>
-        </div>
-        <button class="carousel-control next" aria-label="Next testimonial">&#10095;</button>
+    <section class="card grid-card" id="card3">
+      <div class="half-card box-bg center">
+        <h2>Student Offer</h2>
+        <p>Exclusive discount for students. Free accessories included!</p>
+        <a href="#" class="cta blue">Shop Student</a>
+      </div>
+      <div class="half-card box-bg center">
+        <h2>Accessories</h2>
+        <p>Choose from a range of cool add-ons and gear.</p>
+        <a href="#" class="cta grey">Browse Accessories</a>
       </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="section pricing-section">
-      <h2 class="section-title">Membership Pricing</h2>
-      <div class="pricing-cards container">
-        <article class="pricing-card animate fade-in-up" tabindex="0">
-          <h3>Basic</h3>
-          <p class="price">$19 <span>/month</span></p>
-          <ul>
-            <li>Access to all workouts</li>
-            <li>Community forum</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-cta">Choose Basic</a>
-        </article>
-        <article class="pricing-card animate fade-in-up popular" tabindex="0">
-          <h3>Standard</h3>
-          <p class="price">$39 <span>/month</span></p>
-          <ul>
-            <li>Personalized plans</li>
-            <li>Trainer chat & support</li>
-            <li>Weekly progress tracking</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-cta">Choose Standard</a>
-        </article>
-        <article class="pricing-card animate fade-in-up" tabindex="0">
-          <h3>Premium</h3>
-          <p class="price">$59 <span>/month</span></p>
-          <ul>
-            <li>1:1 Private training</li>
-            <li>Diet planning</li>
-            <li>Exclusive events</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-cta">Choose Premium</a>
-        </article>
+    <section class="card row-cards" id="card4">
+      <div class="mini-card box-bg dark">
+        <h3>Gadget Pro</h3>
+        <p>Minimal, sleek, and powerful for everyday use.</p>
+        <a href="#" class="cta blue">Learn more</a>
+        <img src="https://dummyimage.com/200x120/222/fff&text=Gadget" alt="Gadget" />
+      </div>
+      <div class="mini-card box-bg light">
+        <h3>Tablet Air</h3>
+        <p>Thin, light, and packed with features.</p>
+        <a href="#" class="cta blue">Learn more</a>
+        <img src="https://dummyimage.com/200x120/f5f5f5/9d9d9d&text=Tablet" alt="Tablet" />
+      </div>
+      <div class="mini-card box-bg">
+        <h3>For Students</h3>
+        <p>Empower your studies with the latest tech.</p>
+        <a href="#" class="cta grey">Shop Now</a>
+        <img src="https://dummyimage.com/200x120/9edad6/222&text=Student" alt="For Students" />
+      </div>
+      <div class="mini-card box-bg dark">
+        <h3>Pro Pad</h3>
+        <p>Unbelievably thin. Unbelievably powerful.</p>
+        <a href="#" class="cta blue">Buy</a>
+        <img src="https://dummyimage.com/200x120/333/fff&text=Pro+Pad" alt="Pro Pad" />
       </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="section faq-section">
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <div class="faq-container container">
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" aria-controls="faq1" id="faq1-btn">
-            What is included in the personal training?
-            <span class="arrow">&#9660;</span>
-          </button>
-          <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-btn">
-            Personalized coaching, workout programming, and progress tracking.
-          </div>
+    <section class="card side-by-side-card" id="card5">
+      <div class="half-card img-bg" style="background-image:url('https://dummyimage.com/400x250/f3d250/222&text=Wireless+Earbuds');">
+        <div class="overlay">
+          <h2>Wireless Earbuds</h2>
+          <p>Iconic Sound. Active noise cancellation.</p>
+          <a href="#" class="cta white">Learn more</a>
         </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" aria-controls="faq2" id="faq2-btn">
-            Can I join group classes as a beginner?
-            <span class="arrow">&#9660;</span>
-          </button>
-          <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-btn">
-            Absolutely! Group classes cater to all levels with scalable intensity.
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" aria-controls="faq3" id="faq3-btn">
-            How do I get a custom nutrition plan?
-            <span class="arrow">&#9660;</span>
-          </button>
-          <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-btn">
-            Nutritionists work with you to build a personalized plan after an initial assessment.
-          </div>
+      </div>
+      <div class="half-card img-bg" style="background-image:url('https://dummyimage.com/400x250/7eb8a4/fff&text=Trade+In');">
+        <div class="overlay">
+          <h2>Trade-In</h2>
+          <p>Upgrade and save on your next purchase.</p>
+          <a href="#" class="cta white">See what your device is worth</a>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-      <h2 class="section-title">Contact Us</h2>
-      <form class="contact-form container" novalidate>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your Name" required />
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Your Email" required />
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-        <button type="submit" class="btn btn-primary btn-submit glow-btn">Send Message</button>
-      </form>
-      <div class="social-icons container" aria-label="social media">
-        <a href="#" aria-label="Facebook" class="social-icon fb-icon"></a>
-        <a href="#" aria-label="Twitter" class="social-icon tw-icon"></a>
-        <a href="#" aria-label="Instagram" class="social-icon ig-icon"></a>
-        <a href="#" aria-label="LinkedIn" class="social-icon li-icon"></a>
-      </div>
-      <div class="map-container container">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0125051859637!2d-122.41941508468114!3d37.77492987975953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c8e5f672b%3A0x4078c9180ba5b51a!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1625044371227!5m2!1sen!2sus"
-          width="100%"
-          height="250"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Google Map"
-        ></iframe>
+    <section class="card promo-card banner-card" id="card6">
+      <div class="banner-content">
+        <img src="https://dummyimage.com/200x80/222/fff&text=Show+Promo" alt="Featured Promo" />
+        <div>
+          <h2>Stream the Latest Show!</h2>
+          <a href="#" class="cta blue">Stream Now</a>
+        </div>
       </div>
     </section>
   </main>
-
-  <footer>
-    <div class="footer-content container">
-      <nav aria-label="footer navigation" class="footer-nav">
-        <a href="#hero">Home</a>
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <p>© 2025 FitVibe. All rights reserved.</p>
-      <button id="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Dark/Light Mode">🌙</button>
+  
+  <!-- Footer (with mini-links and company info) -->
+  <footer class="footer" id="footer">
+    <div class="footer-links">
+      <a href="#">Contact</a>
+      <a href="#">Support</a>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+    </div>
+    <div class="footer-copy">
+      <p>&copy; 2025 BrandName. All rights reserved.</p>
     </div>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
