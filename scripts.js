@@ -1,84 +1,155 @@
-/* ===== RESET ===== */
-* {
-  margin: 0; padding: 0;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
-}
-body {
-  line-height: 1.6;
-  background: #f9f9f9;
-  color: #333;
-}
-a { text-decoration: none; }
+// Utilities
+const $ = (q, ctx = document) => ctx.querySelector(q);
+const $$ = (q, ctx = document) => Array.from(ctx.querySelectorAll(q));
 
-/* ===== NAVBAR ===== */
-.navbar {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1rem 2rem;
-  background: #111; color: #fff;
-}
-.nav-links {
-  list-style: none;
-  display: flex; gap: 1.5rem;
-}
-.nav-links a { color: #fff; transition: 0.3s; }
-.nav-links a:hover { color: #ff6b6b; }
+/* Loader */
+window.addEventListener('load', () => {
+  $('#loader')?.classList.add('hidden');
+});
 
-/* ===== HERO ===== */
-.hero {
-  height: 100vh;
-  background: url("assets/hero-bg.jpg") center/cover no-repeat;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  text-align: center; color: #fff;
-}
-.hero h1 { font-size: 3rem; animation: fadeIn 1s ease; }
-.hero p { margin: 1rem 0; font-size: 1.2rem; }
-.hero-buttons { display: flex; gap: 1rem; }
+/* Current year */
+$('#year').textContent = new Date().getFullYear();
 
-/* Buttons */
-.btn {
-  padding: 0.7rem 1.5rem;
-  border-radius: 5px;
-  font-weight: bold;
-}
-.primary { background: #ff6b6b; color: #fff; }
-.primary:hover { background: #e63946; }
-.secondary { background: #fff; color: #111; }
-.secondary:hover { background: #eee; }
+/* Mobile Nav */
+const hamburger = $('#hamburger');
+const navMenu = $('#navMenu');
+hamburger?.addEventListener('click', () => {
+  const open = navMenu.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+$$('.nav-links a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
 
-/* ===== SECTIONS ===== */
-section { padding: 4rem 2rem; text-align: center; }
-.services .card, .pricing .price-card, .testimonials .testimonial {
-  background: #fff; padding: 1.5rem; margin: 1rem;
-  border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-.card:hover, .price-card:hover, .testimonial:hover { transform: translateY(-10px); }
+/* Back to top */
+const backToTop = $('#backToTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 500) backToTop.classList.add('show');
+  else backToTop.classList.remove('show');
+});
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-/* ===== TESTIMONIALS ===== */
-.testimonials { background: #f0f0f0; }
-.testimonial img {
-  width: 80px; height: 80px; border-radius: 50%; margin-bottom: 1rem;
+/* Theme toggle (persist) */
+const themeToggle = $('#themeToggle');
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+themeToggle?.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = current === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+});
+
+/* Intersection Observer: reveal on scroll */
+const revealEls = [...$$('.reveal-up'), ...$$('.reveal-fade')];
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(ent => {
+    if (ent.isIntersecting) {
+      ent.target.classList.add('revealed');
+      io.unobserve(ent.target);
+    }
+  });
+}, {threshold: 0.15});
+revealEls.forEach(el => io.observe(el));
+
+/* Animated counters */
+const counters = $$('.count');
+let countersAnimated = false;
+const countersIO = new IntersectionObserver((entries) => {
+  entries.forEach(ent => {
+    if (ent.isIntersecting && !countersAnimated) {
+      countersAnimated = true;
+      counters.forEach(counter => animateCount(counter));
+      countersIO.disconnect();
+    }
+  });
+}, {threshold: 0.4});
+if (counters.length) countersIO.observe(counters[0]);
+
+function animateCount(el) {
+  const target = +el.dataset.target || 0;
+  const duration = 1400;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    el.textContent = Math.floor(p * target).toLocaleString();
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 }
 
-/* ===== CONTACT ===== */
-form {
-  display: flex; flex-direction: column; gap: 1rem;
-  max-width: 500px; margin: auto;
-}
-form input, form textarea {
-  padding: 0.8rem; border: 1px solid #ccc; border-radius: 5px;
-}
-form button { width: fit-content; margin: auto; }
+/* Carousel */
+const track = $('.carousel-track');
+const prevBtn = $('.carousel .prev');
+const nextBtn = $('.carousel .next');
+const dotsWrap = $('.carousel-dots');
 
-/* ===== FOOTER ===== */
-footer {
-  background: #111; color: #fff; text-align: center;
-  padding: 1rem; margin-top: 2rem;
+if (track && prevBtn && nextBtn && dotsWrap) {
+  const slides = $$('.testimonial', track);
+  let index = 0;
+
+  // dots
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(b);
+  });
+  function updateDots() {
+    $$('.carousel-dots button', dotsWrap).forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    const offset = slides.slice(0, index).reduce((acc, s) => acc + s.getBoundingClientRect().width + 16, 0);
+    track.scrollTo({ left: offset, behavior: 'smooth' });
+    updateDots();
+  }
+  prevBtn.addEventListener('click', () => goTo(index - 1));
+  nextBtn.addEventListener('click', () => goTo(index + 1));
+  updateDots();
+
+  // Auto-play
+  let auto = setInterval(() => goTo(index + 1), 5000);
+  track.addEventListener('pointerenter', () => clearInterval(auto));
+  track.addEventListener('pointerleave', () => auto = setInterval(() => goTo(index + 1), 5000));
 }
 
-/* ===== ANIMATIONS ===== */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* FAQ details animation (native <details> is good; just add smoothness) */
+$$('details').forEach(d => {
+  d.addEventListener('toggle', () => {
+    if (d.open) {
+      const c = d.querySelector('p');
+      if (c) {
+        c.style.opacity = 0;
+        requestAnimationFrame(() => {
+          c.animate([{opacity:0},{opacity:1}], {duration:200, fill:'forwards'});
+        });
+      }
+    }
+  });
+});
+
+/* Contact form validation (client-side only) */
+$('#contactForm')?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  let valid = true;
+  $$('input[required], textarea[required]', form).forEach(field => {
+    const error = field.parentElement.querySelector('.error');
+    if (!field.value.trim() || (field.type === 'email' && !/^\S+@\S+\.\S+$/.test(field.value))) {
+      error.textContent = field.type === 'email' ? 'Enter a valid email.' : 'This field is required.';
+      valid = false;
+    } else {
+      error.textContent = '';
+    }
+  });
+
+  const status = $('#formStatus');
+  if (!valid) {
+    status.textContent = 'Please fix the errors above.';
+    return;
+  }
+  // Simulate success (replace with your backend later)
+  status.textContent = 'Sending…';
+  setTimeout(() => {
+    status.textContent = 'Thanks! We’ll reach out within 24 hours.';
+    e.target.reset();
+  }, 700);
+});
